@@ -1,0 +1,159 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #172033;
+  background: #f5f7fb
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0
+}
+
+.shell {
+  max-width: 1050px;
+  margin: auto;
+  padding: 32px 20px
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e9f2;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 28px #2538580d;
+  margin-bottom: 20px
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 30px
+}
+
+h2 {
+  margin-top: 0
+}
+
+.muted {
+  color: #68738a
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 12px 0
+}
+
+input,
+select,
+button {
+  font: inherit;
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid #d5dbea
+}
+
+button {
+  cursor: pointer;
+  background: #315efb;
+  color: white;
+  border: 0;
+  font-weight: 650
+}
+
+button.secondary {
+  background: #eef2ff;
+  color: #3151c6
+}
+
+button.danger {
+  background: #fff0f0;
+  color: #b42318
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1fr) 150px 68px;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #edf0f6
+}
+
+.entry input {
+  width: 100%
+}
+
+.entry select,
+.entry button {
+  min-width: 0;
+  white-space: nowrap
+}
+
+.entry button {
+  width: 68px
+}
+
+.notice {
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff8e6;
+  color: #855b00;
+  margin: 12px 0
+}
+
+.error {
+  background: #fff0f0;
+  color: #b42318
+}
+
+.success {
+  background: #edfbf2;
+  color: #147a3c
+}
+
+.pill {
+  display: inline-block;
+  background: #edf2ff;
+  color: #3151c6;
+  padding: 5px 9px;
+  border-radius: 99px;
+  font-size: 13px
+}
+
+@media(max-width:700px) {
+  .grid {
+    grid-template-columns: 1fr
+  }
+
+  .entry {
+    grid-template-columns: 25px minmax(0, 1fr) minmax(0, 1fr) 100px 58px
+  }
+
+  .shell {
+    padding: 18px 12px
+  }
+}

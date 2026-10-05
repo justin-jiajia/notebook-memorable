@@ -1,0 +1,303 @@
+========== /svc/account/login method POST
+// REQUEST Wn
+message Wn {
+  string username = 1;
+  string password = 2;
+}
+
+// RESPONSE Jn
+message Jn {
+  enum Gn status = 1;
+  string token = 2;
+}
+
+========== /svc/account/get-account-status method POST
+// REQUEST fa
+message fa {
+
+}
+
+// RESPONSE Ta
+message Ta {
+  bool logged_in = 1;
+  string redirect_to = 2;
+}
+
+========== /svc/account/signup method POST
+// REQUEST ta
+message ta {
+  string username = 1;
+  string password = 2;
+}
+
+// RESPONSE ra
+message ra {
+  enum xn status = 1;
+  string ankiuser_login_token = 2;
+}
+
+========== /svc/account/verify-email method POST
+// REQUEST ia
+message ia {
+  string token = 1;
+}
+
+// RESPONSE ca
+message ca {
+  bool token_verified = 1;  // oneof state
+  oa sending_status = 2;  // oneof state
+}
+message oa {
+  int64 updated = 1;
+  enum Pn progress = 2;
+  string email = 3;
+}
+
+========== /svc/account/resend-verification method POST
+// REQUEST da
+message da {
+  string hkey = 1;
+}
+
+// RESPONSE ma
+message ma {
+  bool throttled = 1;
+}
+
+========== /svc/account/check-terms method POST
+// REQUEST Kn
+message Kn {
+
+}
+
+// RESPONSE Xn
+message Xn {
+  bool needs_to_confirm = 1;
+}
+
+========== /svc/account/confirm-terms method POST
+// REQUEST Yn
+message Yn {
+  bool agree_to_terms = 1;
+}
+
+// RESPONSE Hn
+message Hn {
+
+}
+
+========== /svc/decks/deck-list-info method POST
+// REQUEST xa
+message xa {
+  int32 minutes_west_of_utc = 1;
+}
+
+// RESPONSE Pa
+message Pa {
+  Ae top_node = 1;
+  int64 current_deck_id = 2;
+  uint32 collection_size_bytes = 3;
+  uint64 media_size_bytes = 4;
+}
+message Ae {
+  int64 deck_id = 1;
+  string name = 2;
+  uint32 level = 4;
+  bool collapsed = 5;
+  uint32 review_count = 6;
+  uint32 learn_count = 7;
+  uint32 new_count = 8;
+  uint32 intraday_learning = 9;
+  uint32 interday_learning_uncapped = 10;
+  uint32 new_uncapped = 11;
+  uint32 review_uncapped = 12;
+  uint32 total_in_deck = 13;
+  uint32 total_including_children = 14;
+  bool filtered = 16;
+  repeated Ae children = 3;
+}
+
+========== /svc/decks/create-deck method POST
+// REQUEST ds
+message ds {
+  string name = 1;
+}
+
+// RESPONSE ms
+message ms {
+
+}
+
+========== /svc/decks/select-deck method POST
+// REQUEST Ja
+message Ja {
+  int64 deck_id = 1;
+}
+
+// RESPONSE Ka
+message Ka {
+
+}
+
+========== /svc/editor/get-info-for-adding method POST
+// REQUEST ss
+message ss {
+
+}
+
+// RESPONSE ts
+message ts {
+  repeated Ra notetypes = 1;
+  repeated La decks = 2;
+  int64 current_deck_id = 3;
+  int64 current_notetype_id = 4;
+  repeated Y fields = 5;
+}
+message Ra {
+  int64 id = 1;
+  string name = 2;
+}
+message La {
+  int64 id = 1;
+  string name = 2;
+}
+message Y {
+  Sa ord = 1;
+  string name = 2;
+  Ea config = 5;
+}
+message Sa {
+  uint32 val = 1;
+}
+message Ea {
+  bool sticky = 1;
+  bool rtl = 2;
+  string font_name = 3;
+  uint32 font_size = 4;
+  string description = 5;
+  bool plain_text = 6;
+  bool collapsed = 7;
+  bool exclude_from_search = 8;
+  int64 id = 9;
+  uint32 tag = 10;
+  bool prevent_deletion = 11;
+  bytes other = 255;
+}
+
+========== /svc/editor/get-notetype-fields method POST
+// REQUEST ns
+message ns {
+  int64 notetype_id = 1;
+}
+
+// RESPONSE as
+message as {
+  repeated Y fields = 1;
+}
+message Y {
+  Sa ord = 1;
+  string name = 2;
+  Ea config = 5;
+}
+message Sa {
+  uint32 val = 1;
+}
+message Ea {
+  bool sticky = 1;
+  bool rtl = 2;
+  string font_name = 3;
+  uint32 font_size = 4;
+  string description = 5;
+  bool plain_text = 6;
+  bool collapsed = 7;
+  bool exclude_from_search = 8;
+  int64 id = 9;
+  uint32 tag = 10;
+  bool prevent_deletion = 11;
+  bytes other = 255;
+}
+
+========== /svc/editor/add-or-update method POST
+// REQUEST Ia
+message Ia {
+  repeated string fields = 1;
+  string tags = 2;
+  ba add = 3;  // oneof mode
+  Ua edit = 4;  // oneof mode
+}
+message ba {
+  int64 notetype_id = 1;
+  int64 deck_id = 2;
+}
+message Ua {
+  int64 note_id = 1;
+}
+
+// RESPONSE Ma
+message Ma {
+
+}
+
+========== /svc/editor/get-note-info method POST
+// REQUEST Aa
+message Aa {
+  int64 note_id = 1;
+}
+
+// RESPONSE Oa
+message Oa {
+  repeated string fields = 1;
+  repeated Y notetype_fields = 2;
+  string tags = 3;
+}
+message Y {
+  Sa ord = 1;
+  string name = 2;
+  Ea config = 5;
+}
+message Sa {
+  uint32 val = 1;
+}
+message Ea {
+  bool sticky = 1;
+  bool rtl = 2;
+  string font_name = 3;
+  uint32 font_size = 4;
+  string description = 5;
+  bool plain_text = 6;
+  bool collapsed = 7;
+  bool exclude_from_search = 8;
+  int64 id = 9;
+  uint32 tag = 10;
+  bool prevent_deletion = 11;
+  bytes other = 255;
+}
+
+========== /svc/search/search method POST
+// REQUEST qa
+message qa {
+  string search = 1;
+}
+
+// RESPONSE $a
+message $a {
+  repeated Wa notes = 1;
+  string error = 2;
+}
+message Wa {
+  int64 note_id = 1;
+  string joined_fields = 2;
+}
+
+ENUMS
+Gn ('', [('0', 'LOGIN_RESPONSE_STATUS_UNKNOWN'), ('1', 'LOGIN_RESPONSE_STATUS_AUTHENTICATED'), ('2', 'LOGIN_RESPONSE_STATUS_INVALID_USER'), ('3', 'LOGIN_RESPONSE_STATUS_INVALID_PASS')])
+Cn ('', [('0', 'SETTINGS_RESULT_UNKNOWN'), ('1', 'SETTINGS_RESULT_PASSWORD_CHANGED'), ('2', 'SETTINGS_RESULT_EMAIL_CHANGED'), ('3', 'SETTINGS_RESULT_INVALID_CURRENT_PASSWORD'), ('4', 'SETTINGS_RESULT_INVALID_EMAIL'), ('5', 'SETTINGS_RESULT_EMAIL_UNAVAILABLE'), ('6', 'SETTINGS_RESULT_SPAM_REPORT')])
+Vn ('', [('0', 'REMOVE_ACCOUNT_STATUS_UNKNOWN'), ('1', 'REMOVE_ACCOUNT_STATUS_VALID_PASSWORD_REQUIRED'), ('2', 'REMOVE_ACCOUNT_STATUS_IN_PROGRESS'), ('3', 'REMOVE_ACCOUNT_STATUS_FINISHED')])
+xn ('', [('0', 'SIGNUP_STATUS_UNKNOWN'), ('1', 'SIGNUP_STATUS_SUCCESS'), ('2', 'SIGNUP_STATUS_USERNAME_INVALID'), ('3', 'SIGNUP_STATUS_USERNAME_TAKEN'), ('4', 'SIGNUP_STATUS_SPAM_EMAIL')])
+Pn ('', [('0', 'SENDING_PROGRESS_UNKNOWN'), ('1', 'SENDING_PROGRESS_SENDING'), ('2', 'SENDING_PROGRESS_DELIVERED'), ('3', 'SENDING_PROGRESS_SPAM'), ('4', 'SENDING_PROGRESS_QUOTA'), ('5', 'SENDING_PROGRESS_OTHER_DELAY'), ('6', 'SENDING_PROGRESS_FAILED')])
+qn ('', [('0', 'SEND_RESET_EMAIL_RESULT_UNKNOWN'), ('1', 'SEND_RESET_EMAIL_RESULT_THROTTLED'), ('2', 'SEND_RESET_EMAIL_RESULT_INVALID_EMAIL'), ('4', 'SEND_RESET_EMAIL_RESULT_SUCCESS')])
+$n ('', [('0', 'SET_NEW_PASSWORD_RESULT_UNKNOWN'), ('1', 'SET_NEW_PASSWORD_RESULT_INVALID_TOKEN'), ('2', 'SET_NEW_PASSWORD_RESULT_SUCCESS')])
+pa ('', [('0', 'DECK_SHARE_STATE_NO_ACTIVE_SHARE'), ('1', 'DECK_SHARE_STATE_WAITING'), ('2', 'DECK_SHARE_STATE_IN_PROGRESS'), ('3', 'DECK_SHARE_STATE_SUCCESS'), ('4', 'DECK_SHARE_STATE_TOO_LARGE'), ('5', 'DECK_SHARE_STATE_UNKNOWN_ERROR')])
+fs ('', [('0', 'CLEAR_REVIEWS_MODE_UNKNOWN'), ('1', 'CLEAR_REVIEWS_MODE_ALL_REVIEWS_BY_USER'), ('2', 'CLEAR_REVIEWS_MODE_ALL_REVIEWS_ON_DECKS_OF_USER')])
+Ts ('', [('0', 'EMAIL_STATUS_ACTION_VIEW'), ('1', 'EMAIL_STATUS_ACTION_SEND_EMAIL'), ('2', 'EMAIL_STATUS_ACTION_REMOVE_SPAM_BLOCK')])
+ft ('', [('0', 'USER_UPLOAD_STATUS_UNSPECIFIED'), ('1', 'USER_UPLOAD_STATUS_NO_USER'), ('2', 'USER_UPLOAD_STATUS_TOO_NEW'), ('3', 'USER_UPLOAD_STATUS_CAN_UPLOAD')])
